@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<div class="hero mb-5">
+
+<div class="hero-overlay text-center">
+
+<h1 class="display-4">♠ Poker Team</h1>
+
+<p class="lead">
+Estamos construindo um time competitivo de poker online.
+Buscamos jogadores focados em evolução e disciplina.
+</p>
+
+<a href="{% url 'lista_vagas' %}" class="btn btn-primary btn-lg mt-3">
+Ver vagas abertas
+</a>
+
+</div>
+
+</div>
+
+
+<!-- COMO FUNCIONA -->
+
+<h2 class="section-title">
+Como funciona o recrutamento
+</h2>
+
+<div class="process-section">
+
+<div class="row text-center">
+
+<div class="col-md-4">
+
+<h3>📝</h3>
+
+<h5>Inscrição</h5>
+
+<p>
+Escolha uma vaga e envie sua candidatura pelo sistema.
+</p>
+
+</div>
+
+
+<div class="col-md-4">
+
+<h3>📊</h3>
+
+<h5>Avaliação</h5>
+
+<p>
+Nossa equipe analisa seu perfil e histórico no jogo.
+</p>
+
+</div>
+
+
+<div class="col-md-4">
+
+<h3>♠</h3>
+
+<h5>Seleção</h5>
+
+<p>
+Os aprovados são convidados para integrar o time.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- VAGAS -->
+
+{% for vaga in vagas %}
+
+<div class="col-md-4">
+
+<div class="vaga-card">
+
+<div class="vaga-title">
+♠ {{ vaga.titulo }}
+</div>
+
+<div class="vaga-desc">
+{{ vaga.descricao|truncatewords:20 }}
+</div>
+
+<div class="vaga-footer">
+
+<span class="badge-vaga">
+vaga aberta
+</span>
+
+<a href="{% url 'lista_vagas' %}" class="btn btn-sm btn-primary">
+Ver vaga
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+<!-- CTA -->
+
+<div class="cta-section text-center p-5 mt-5">
+
+<h2>
+Pronto para evoluir no poker?
+</h2>
+
+<p class="lead">
+Candidate-se e faça parte de um time focado em performance.
+</p>
+
+<a href="{% url 'lista_vagas' %}" class="btn btn-primary btn-lg">
+Ver oportunidades
+</a>
+
+</div>
+
+{% endblock %}
