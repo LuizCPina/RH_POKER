@@ -1,47 +1,39 @@
-from django.shortcuts import render, get_object_or_404,redirect
-from .models import Perfil, Vaga, Candidatura
-from .forms import CandidaturaForm
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from .models import Inscricao
+from django.contrib import messages
 
 def home(request):
 
-    vagas = Vaga.objects.all()[:3]
-
-    return render(request, 'home.html', {'vagas': vagas})
-
-def lista_vagas(request):
-
-    vagas = Vaga.objects.all()
-
-    return render(request, 'vagas.html', {'vagas': vagas})
-
-def detalhes_vaga(request, vaga_id):
-
-    vaga = get_object_or_404(Vaga, id=vaga_id)
-    
-    return render(request, 'detalhes_vaga.html', {'vaga': vaga})
-
-@login_required
-def candidatar(request, vaga_id):
-
-    vaga = get_object_or_404(Vaga, id=vaga_id)
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
-
     if request.method == 'POST':
 
-        Candidatura.objects.get_or_create(
-            usuario=perfil,
-            vaga=vaga,
+        email = request.POST.get('email')
+
+        if Inscricao.objects.filter(email=email).exists():
+            messages.error(request, 'Este email já foi cadastrado.')
+            return redirect('inscricao')
+
+        plataformas = request.POST.getlist('plataformas')
+        plataformas_str = ', '.join(plataformas)
+
+        Inscricao.objects.create(
+            nome = request.POST.get('nome'),
+
+            email = email,
+
+            pergunta1 = request.POST.get('pergunta1'),
+            pergunta2 = request.POST.get('pergunta2'),
+            pergunta3 = request.POST.get('pergunta3'),
+            nicknames = request.POST.get('nicknames'),
+            plataformas = plataformas_str,
         )
+            
+        
 
-        return redirect('lista_vagas')
-    
-    return render(request, 'candidatar.html', {'vaga': vaga})
+        messages.success(request, 'Inscrição enviada com sucesso!')
+        return redirect('inscricao')  
 
-@login_required
-def minhas_candidaturas(request):
+    return render(request, 'home.html')
 
-    perfil, created = Perfil.objects.get_or_create(user=request.user)
-    candidaturas = Candidatura.objects.filter(usuario=perfil)
 
-    return render(request, 'minhas_candidaturas.html', {'candidaturas': candidaturas})
+def como_funciona(request):
+    return render(request, 'como_funciona.html')

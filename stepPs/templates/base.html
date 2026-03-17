@@ -14,46 +14,38 @@
 
 <body>
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
 
     <div class="container">
 
         <!-- Logo -->
-        <a class="navbar-brand" href="{% url 'home' %}">
+        <a class="navbar-brand fw-bold" href="{% url 'inscricao' %}">
             ♠ Poker Team
         </a>
 
+        <!-- Botão mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <!-- Menu -->
-        <div class="ms-auto d-flex align-items-center gap-3">
+        <div class="collapse navbar-collapse" id="menu">
 
-            <a class="nav-link text-white" href="{% url 'lista_vagas' %}">
-                Vagas
-            </a>
+            <ul class="navbar-nav ms-auto align-items-center gap-3">
 
-            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'inscricao' %}">
+                        Inscrição
+                    </a>
+                </li>
 
-                <a class="nav-link text-white" href="{% url 'minhas_candidaturas' %}">
-                    Minhas candidaturas
-                </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'como_funciona' %}">
+                        Como funciona
+                    </a>
+                </li>
 
-                <span class="text-white">
-                    Olá, {{ user.username }}
-                </span>
-
-                <form action="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <button class="btn btn-sm btn-danger">
-                        Logout
-                    </button>
-                </form>
-
-            {% else %}
-
-                <a class="btn btn-primary btn-sm" href="{% url 'login' %}">
-                    Login
-                </a>
-
-            {% endif %}
+            </ul>
 
         </div>
 
@@ -61,10 +53,50 @@
 
 </nav>
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <div class="container mt-4">
 {% block content %}
 {% endblock %}
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(() => {
+    'use strict'
+
+    const forms = document.querySelectorAll('.needs-validation')
+
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+
+            const checkboxes = form.querySelectorAll('input[name="plataformas"]:checked')
+            const erro = document.getElementById('erro-plataformas')
+
+            if (checkboxes.length === 0) {
+                event.preventDefault()
+                event.stopPropagation()
+                erro.classList.remove('d-none')
+            } else {
+                erro.classList.add('d-none')
+            }
+
+            if (!form.checkValidity() || checkboxes.length === 0) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+
+        }, false)
+    })
+})()
+</script>
 </body>
 </html>

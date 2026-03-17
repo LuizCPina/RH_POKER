@@ -1,7 +1,7 @@
 from django import forms
-from .models import Candidatura
+from .models import Inscricao
 
-class CandidaturaForm(forms.ModelForm):
+class InscricaoForm (forms.ModelForm):
     class Meta:
-        model = Candidatura
+        model = Inscricao
         fields = []

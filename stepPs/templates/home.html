@@ -2,131 +2,106 @@
 
 {% block content %}
 
-<!-- HERO -->
+<div class="container mt-5">
 
-<div class="hero mb-5">
+    <div class="text-center mb-4">
+        <h1>♠ Poker Team</h1>
+        <p>Preencha o formulário para participar</p>
+    </div>
 
-<div class="hero-overlay text-center">
+    <div class="card p-4 shadow">
 
-<h1 class="display-4">♠ Poker Team</h1>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
 
-<p class="lead">
-Estamos construindo um time competitivo de poker online.
-Buscamos jogadores focados em evolução e disciplina.
-</p>
+            <!-- Nome -->
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" name="nome" class="form-control" required>
+                <div class="invalid-feedback">
+                    Por favor, informe seu nome.
+                </div>
+            </div>
 
-<a href="{% url 'lista_vagas' %}" class="btn btn-primary btn-lg mt-3">
-Ver vagas abertas
-</a>
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+                <div class="invalid-feedback">
+                    Email inválido.
+                </div>
+            </div>
 
-</div>
+            <!-- Nicknames -->
+            <div class="mb-3">
+                <label class="form-label">Nicknames (se tiver mais de um, separe por vírgula)</label>
+                <input type="text" name="nicknames" class="form-control">
+            </div>
 
-</div>
+            <!-- Plataforma -->
+            <div class="mb-4">
 
+                <label class="form-label mb-3">Plataformas que você joga</label>
 
-<!-- COMO FUNCIONA -->
+                <div class="plataformas-grid">
 
-<h2 class="section-title">
-Como funciona o recrutamento
-</h2>
+                    <label class="plataforma-card">
+                        <input type="checkbox" name="plataformas" value="PokerStars">
+                        <span>PokerStars</span>
+                    </label>
 
-<div class="process-section">
+                    <label class="plataforma-card">
+                        <input type="checkbox" name="plataformas" value="partypoker">
+                        <span>partypoker</span>
+                    </label>
 
-<div class="row text-center">
+                    <label class="plataforma-card">
+                        <input type="checkbox" name="plataformas" value="888poker">
+                        <span>888poker</span>
+                    </label>
 
-<div class="col-md-4">
+                    <label class="plataforma-card">
+                        <input type="checkbox" name="plataformas" value="GGPoker">
+                        <span>GGPoker</span>
+                    </label>
 
-<h3>📝</h3>
+                    <label class="plataforma-card">
+                        <input type="checkbox" name="plataformas" value="Outros">
+                        <span>Outros</span>
+                    </label>
 
-<h5>Inscrição</h5>
+            </div>
 
-<p>
-Escolha uma vaga e envie sua candidatura pelo sistema.
-</p>
-
-</div>
-
-
-<div class="col-md-4">
-
-<h3>📊</h3>
-
-<h5>Avaliação</h5>
-
-<p>
-Nossa equipe analisa seu perfil e histórico no jogo.
-</p>
-
-</div>
-
-
-<div class="col-md-4">
-
-<h3>♠</h3>
-
-<h5>Seleção</h5>
-
-<p>
-Os aprovados são convidados para integrar o time.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- VAGAS -->
-
-{% for vaga in vagas %}
-
-<div class="col-md-4">
-
-<div class="vaga-card">
-
-<div class="vaga-title">
-♠ {{ vaga.titulo }}
-</div>
-
-<div class="vaga-desc">
-{{ vaga.descricao|truncatewords:20 }}
-</div>
-
-<div class="vaga-footer">
-
-<span class="badge-vaga">
-vaga aberta
-</span>
-
-<a href="{% url 'lista_vagas' %}" class="btn btn-sm btn-primary">
-Ver vaga
-</a>
+    <!-- erro -->
+    <div id="erro-plataformas" class="text-danger mt-2 d-none">
+        Selecione pelo menos uma plataforma.
+    </div>
 
 </div>
 
-</div>
+            <!-- Perguntas -->
+            <div class="mb-3">
+                <label class="form-label">Experiência no poker</label>
+                <textarea name="pergunta1" class="form-control" rows="3"></textarea>
+            </div>
 
-</div>
+            <div class="mb-3">
+                <label class="form-label">Objetivo no poker</label>
+                <textarea name="pergunta2" class="form-control" rows="3"></textarea>
+            </div>
 
-{% endfor %}
+            <div class="mb-3">
+                <label class="form-label">Por que quer entrar?</label>
+                <textarea name="pergunta3" class="form-control" rows="3"></textarea>
+            </div>
 
-<!-- CTA -->
+            <button type="submit" class="btn btn-success w-100">
+                Enviar inscrição
+            </button>
 
-<div class="cta-section text-center p-5 mt-5">
+        </form>
 
-<h2>
-Pronto para evoluir no poker?
-</h2>
-
-<p class="lead">
-Candidate-se e faça parte de um time focado em performance.
-</p>
-
-<a href="{% url 'lista_vagas' %}" class="btn btn-primary btn-lg">
-Ver oportunidades
-</a>
+    </div>
 
 </div>
 
