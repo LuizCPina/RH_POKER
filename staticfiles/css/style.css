@@ -1,0 +1,157 @@
+/* RESET BÁSICO */
+body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAVBAR */
+.custom-navbar {
+    background: linear-gradient(90deg, #000000, #1a0000);
+    border-bottom: 2px solid #ff0000;
+}
+
+.navbar-brand {
+    color: #ff0000 !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #ff4d4d !important;
+}
+
+/* HERO / TÍTULO */
+h1, h2, h3 {
+    color: #ff0000;
+}
+
+/* CARD / FORMULÁRIO */
+.card {
+    background-color: #1a1a1a;
+    border: 1px solid #330000;
+    border-radius: 12px;
+    color: white;
+}
+
+/* INPUTS */
+input, select {
+    background-color: #0d0d0d !important;
+    color: white !important;
+    border: 1px solid #333 !important;
+}
+
+input:focus, select:focus {
+    border-color: #ff0000 !important;
+    box-shadow: 0 0 5px #ff0000;
+}
+
+/* BOTÕES */
+.btn-primary {
+    background-color: #ff0000;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000;
+}
+
+.btn-success {
+    background-color: #ff0000;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #cc0000;
+}
+
+/* SEÇÃO COMO FUNCIONA */
+.como-funciona {
+    background-color: #111;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+/* TEXTO SECUNDÁRIO */
+p {
+    color: #cccccc;
+}
+
+/* ESPAÇAMENTO */
+.container {
+    margin-top: 30px;
+}
+
+/* feedback visual mais bonito */
+.was-validated .form-control:valid,
+.was-validated .form-select:valid {
+    border-color: #28a745;
+}
+
+.was-validated .form-control:invalid,
+.was-validated .form-select:invalid {
+    border-color: #ff0000;
+}
+
+/* foco bonito */
+.form-control:focus, .form-select:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* GRID */
+.plataformas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+/* CARD */
+.plataforma-card {
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* ESCONDER CHECKBOX */
+.plataforma-card input {
+    display: none;
+}
+
+/* TEXTO */
+.plataforma-card span {
+    color: white;
+    font-weight: 500;
+}
+
+/* HOVER */
+.plataforma-card:hover {
+    border-color: #ff0000;
+    transform: scale(1.03);
+}
+
+/* SELECIONADO */
+.plataforma-card input:checked + span {
+    color: #ff0000;
+}
+
+.plataforma-card input:checked {
+    + span {
+        font-weight: bold;
+    }
+}
+
+/* BORDA QUANDO SELECIONADO */
+.plataforma-card:has(input:checked) {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
