@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t5#&!8+$)167*0r%k1y@0o-27e*k^@*rhw1klu$$%ou%7#vs!6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '*' ]
 
 
 # Application definition
@@ -122,3 +122,5 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'lista_vagas'
 LOGOUT_REDIRECT_URL = '/vagas/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
